@@ -185,13 +185,14 @@
   } catch (err) {}
 
   if (!cookiesAccepted) {
+    var policyUrl = (doc.documentElement.dataset.root || "") + "polityka-prywatnosci/";
     var bar = doc.createElement("div");
     bar.className = "ck";
     bar.setAttribute("role", "region");
     bar.setAttribute("aria-label", "Informacja o plikach cookies");
     bar.innerHTML =
       "<p>Strona korzysta z plików cookies i usług zewnętrznych (Mapy Google, Google Fonts), " +
-      'aby działać poprawnie. Szczegóły w <a href="polityka-prywatnosci.html" data-policy>' +
+      'aby działać poprawnie. Szczegóły w <a href="' + policyUrl + '" data-policy>' +
       'polityce prywatności</a>.</p><button type="button">Akceptuję</button>';
     doc.body.appendChild(bar);
     setTimeout(function () {
@@ -281,6 +282,7 @@
   var form = doc.getElementById("f");
 
   if (form) {
+    form.noValidate = true;
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
       var status = doc.getElementById("st");
